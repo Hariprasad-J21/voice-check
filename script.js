@@ -32,13 +32,16 @@ function stopRecording() {
 function sendChunk(chunk, isFinal) {
   const reader = new FileReader();
   reader.onloadend = () => {
-    fetch(`http://localhost:3000/upload?final=${isFinal}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/octet-stream",
-      },
-      body: reader.result,
-    });
+    fetch(
+      `https://carbonated-unexpected-pear.glitch.me/upload?final=${isFinal}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/octet-stream",
+        },
+        body: reader.result,
+      }
+    );
   };
   reader.readAsArrayBuffer(chunk);
 }
